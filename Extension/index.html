@@ -74,7 +74,7 @@
           Generate Code
         </button>
       </div>
-      <div class="flex justify-center items-center text-gray-600 text-md">
+      <div class="flex justify-center items-center text-gray-600 text-md mt-1">
         Got a code?
         <u class="ml-1 cursor-pointer" id="track-another">track another</u>
       </div>
@@ -130,9 +130,32 @@
           input the 6-digit code to track another
         </div>
         <div class="w-full flex justify-center items-center">
-          <button class="bg-red-500 w-fit rounded-md text-white p-2">
-            start tracking
+          <button
+            class="bg-red-500 w-fit rounded-md text-white p-2"
+            id="start-tracking-button"
+          >
+            Start Tracking
           </button>
+        </div>
+      </div>
+    </div>
+    <div
+      id="tracking-section"
+      class="mt-3 p-4 flex flex-col gap-2 hidden"
+      style="width: 450px"
+    >
+      <h2 class="font-bold text-3xl mb-4">trackmepls.</h2>
+      <p>You are currently tracking session 123123</p>
+      <div
+        class="flex flex-col mb-4 border border-gray-500 p-4 mt-3"
+        id="blacklist-section"
+      >
+        <div class="mb-2">notifications:</div>
+        <div
+          class="flex flex-col text-sm border-gray-500 border text-center px-4 py-2 rounded-lg"
+        >
+          <div class="font-semibold">www.youtube.com was visited</div>
+          <div class="italic">24th Feb, 9.11pm</div>
         </div>
       </div>
     </div>

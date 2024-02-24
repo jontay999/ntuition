@@ -1,6 +1,7 @@
 let startSessionSection = document.getElementById("start-session-section");
 let codeSection = document.getElementById("code-section");
 let trackAnotherSection = document.getElementById("track-another-section");
+let trackingSection = document.getElementById("tracking-section");
 
 let durationDisplay = document.getElementById("duration");
 let reduceDurationButton = document.getElementById("reduce-duration");
@@ -10,6 +11,7 @@ let addWebsiteButton = document.getElementById("add-website");
 let blacklistSection = document.getElementById("blacklist-section");
 let addNewWebsiteButton = document.getElementById("add-new-website-button");
 let generateCodeButton = document.getElementById("generate-code-button");
+let startTrackingButton = document.getElementById("start-tracking-button");
 
 function increaseDuration() {
   durationDisplay.textContent =
@@ -149,6 +151,13 @@ function trackAnother() {
   startSessionSection.style.display = "none";
 }
 
+function startTracking() {
+  //set display none for start section
+  trackingSection.style.display = "block";
+  trackAnotherSection.style.display = "none";
+}
+
 trackAnotherButton.addEventListener("click", trackAnother);
 generateCodeButton.addEventListener("click", generateCode);
 addNewWebsiteButton.addEventListener("click", addWebsite);
+startTrackingButton.addEventListener("click", startTracking);
