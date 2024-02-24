@@ -11,7 +11,7 @@
   <body>
     <div
       id="start-session"
-      class="mt-3 p-4 flex flex-col gap-2"
+      class="p-4 flex flex-col gap-2 bg-gray-100"
       style="width: 450px"
     >
       <h2 class="font-bold text-3xl mb-4">trackmepls.</h2>
@@ -23,7 +23,7 @@
         >
           -5
         </button>
-        <div class="text-lg" id="duration">30 min</div>
+        <div class="text-lg" id="duration">30 mins</div>
         <button
           id="increase-duration"
           class="rounded-full h-8 w-8 border border-gray-500 text-sm p-1"
@@ -31,8 +31,33 @@
           +5
         </button>
       </div>
-      <div>
-        <div>Blacklist:</div>
+      <div class="flex flex-col">
+        <div class="mb-2">Blacklist:</div>
+        <div class="flex items-center gap-3 ml-4">
+          <input type="checkbox" id="youtube" name="youtube" />
+          <label for="scales">www.youtube.com</label>
+        </div>
+        <div class="flex items-center gap-3 ml-4">
+          <input type="checkbox" id="facebook" name="facebook" />
+          <label for="scales">www.facebook.com</label>
+        </div>
+        <div class="flex items-center gap-3 ml-4">
+          <input type="checkbox" id="reddit" name="reddit" />
+          <label for="scales">www.reddit.com</label>
+        </div>
+        <div class="flex items-center gap-3 ml-4">
+          <input type="checkbox" id="instagram" name="instagram" />
+          <label for="scales">www.instagram.com</label>
+        </div>
+      </div>
+      <div class="w-full flex justify-center items-center">
+        <button class="bg-red-500 w-fit rounded-md text-white p-2">
+          Generate Code
+        </button>
+      </div>
+      <div class="flex justify-center items-center text-gray-600">
+        Got a code?
+        <u class="ml-1 cursor-pointer" id="track-another">track another</u>
       </div>
     </div>
   </body>
