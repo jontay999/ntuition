@@ -8,9 +8,18 @@ const { join } = require('node:path');
 const { Server } = require('socket.io');
 
 const app = express();
-app.use(cors());
+const corsOptions ={
+    origin:'http://localhost:3000', 
+    credentials:true,            //access-control-allow-credentials:true
+    optionSuccessStatus:200
+}
+app.use(cors(corsOptions));
 const server = createServer(app);
-const io = new Server(server);
+const io = new Server(server, {
+    cors: {
+      origin: "chrome-extension://efkaaehaeakpdlgfhhdcflficeddogaf"
+    }
+  });
 
 // code : child_socket id
 const codes = {
