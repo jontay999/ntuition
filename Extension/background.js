@@ -1,4 +1,3 @@
-
 const urls = [
     '*://*.facebook.com/',
     '*://*.twitter.com/',
