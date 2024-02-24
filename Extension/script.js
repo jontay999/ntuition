@@ -1,3 +1,7 @@
+let startSessionSection = document.getElementById("start-session-section");
+let codeSection = document.getElementById("code-section");
+let trackAnotherSection = document.getElementById("track-another-section");
+
 let durationDisplay = document.getElementById("duration");
 let reduceDurationButton = document.getElementById("reduce-duration");
 let increaseDurationButton = document.getElementById("increase-duration");
@@ -5,6 +9,7 @@ let trackAnotherButton = document.getElementById("track-another");
 let addWebsiteButton = document.getElementById("add-website");
 let blacklistSection = document.getElementById("blacklist-section");
 let addNewWebsiteButton = document.getElementById("add-new-website-button");
+let generateCodeButton = document.getElementById("generate-code-button");
 
 function increaseDuration() {
   durationDisplay.textContent =
@@ -82,4 +87,34 @@ function addWebsite() {
   }
 }
 
+function generateCode() {
+  var blacklistSites = [];
+  var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  checkboxes.forEach((checkbox) => {
+    if (checkbox.checked) {
+      blacklistSites.push(checkbox.name);
+    }
+  });
+
+  // Get the input value
+  var duration = document.getElementById("duration").textContent.split(" ")[0];
+  console.log(blacklistSites, duration);
+
+  //set display none for start section
+  startSessionSection.style.display = "none";
+  codeSection.style.display = "block";
+
+  //generate a random 6 digit number
+  const randomCode = Math.floor(100000 + Math.random() * 900000);
+  document.getElementById("code").textContent = randomCode;
+}
+
+function trackAnother() {
+  //set display none for start section
+  trackAnotherSection.style.display = "block";
+  startSessionSection.style.display = "none";
+}
+
+trackAnotherButton.addEventListener("click", trackAnother);
+generateCodeButton.addEventListener("click", generateCode);
 addNewWebsiteButton.addEventListener("click", addWebsite);
