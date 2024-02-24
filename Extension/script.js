@@ -17,3 +17,20 @@ function reduceDuration() {
 
 reduceDurationButton.addEventListener("click", reduceDuration);
 increaseDurationButton.addEventListener("click", increaseDuration);
+
+document.getElementById('copy').addEventListener('click', function() {
+    
+    // Select the text field
+    var codeToCopy = document.getElementById("code");
+    
+    // Copy the text inside the text field
+    navigator.clipboard.writeText(codeToCopy.textContent).then(() => {
+      // Alert the user that the text was copied
+      alert('Code copied to clipboard'); 
+    }).catch(err => {
+      // If the user denies clipboard permissions or another error occurs
+      console.error('Error in copying code: ', err);
+    });
+});
+
+
