@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Socket.IO chat</title>
+  </head>
+  <body>
+    <div>I am a child</div>
+    <button onclick="monitor_request()">Create connection request</button>
+    <button onclick="monitor_request()">Create connection request</button>
+    <!-- <script src="/socket.io/socket.io.js"></script> -->
+    <script
+      src="https://cdn.socket.io/4.7.4/socket.io.min.js"
+      integrity="sha384-Gr6Lu2Ajx28mzwyVR8CFkULdCU7kMlZ9UthllibdOSo6qAiN+yXNHqtgdTvFXMT4"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      const socket = io("http://localhost:3000");
+
+      socket.on("chat message", (msg, serverOffset) => {
+        console.log("chat message");
+      });
+
+      socket.on("code", (data) => {
+        console.log("received code:", data);
+      });
+
+      const monitor_request = () => {
+        socket.emit("monitor_request", "hi");
+      };
+    </script>
+  </body>
+</html>

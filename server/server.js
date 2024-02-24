@@ -1,31 +1,70 @@
 require('dotenv').config({ path: '.env' })
-const express = require('express');
 const cors = require('cors')
 
+
+const express = require('express');
+const { createServer } = require('node:http');
+const { join } = require('node:path');
+const { Server } = require('socket.io');
+
 const app = express();
-const port = 8000;
 app.use(cors());
+const server = createServer(app);
+const io = new Server(server);
 
-app.get('/', async (req, res) => {
-    console.log("Hit the / route to show that server is alive")
-    res.type('text/plain').send("Server is running all good");
-});
+// code : client
+const handshakes = {
 
+}
 
+// child : parent
+const connections = {
 
-// handle request
-app.post('/request', async (req, res) => {
-    if (!(req.body.ip && req.body.port)) {
-        res.status(400).send({
-            message: "IP and port has to be defined!"
-        })
+}
+const random_code = () => {
+    return "123456"
+    while (true) {
+        const num = (Math.floor(100000 + Math.random() * 900000)).toString();
+        if (!(num in handshakes)) {
+            return num;
+        }
     }
-    res.status(200).send({
-        message: 'Request made.',
-    });
+}
+
+
+app.get('/child', (req, res) => {
+    res.sendFile(join(__dirname, 'child.html'));
+});
+app.get('/parent', (req, res) => {
+    res.sendFile(join(__dirname, 'parent.html'));
 });
 
-// Start the server
-app.listen(port, () => {
-    console.log(`Server is running at http://localhost:${port}`);
+
+
+// WHAT A PARENT DOES
+
+// 
+io.on('connection', (socket) => {
+    console.log('a user connected');
+
+    // CHILD SAYS IT WANTS TO BE MONITORED
+    socket.on("monitor_request", (data) => {
+        console.log("child monitor request-> ", data)
+        const code = random_code();
+        console.log("Generated code:", code)
+        socket.emit('code', code);
+    })
+
+    // child sends
+    socket.on("monitor_details", (data) => {
+        const json_data = JSON.parse(data);
+        console.log("got json_data")
+    })
+});
+
+
+
+
+server.listen(3000, () => {
+    console.log('server running at http://localhost:3000');
 });
