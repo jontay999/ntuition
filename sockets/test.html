@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WebSocket Chat</title>
+  </head>
+  <body>
+    <div>
+      <label for="message">Message:</label>
+      <input type="text" id="message" />
+      <button onclick="sendMessage()">Send</button>
+    </div>
+    <ul id="chat"></ul>
+
+    <script>
+      const socket = new WebSocket("ws://localhost:3000");
+
+      socket.addEventListener("message", (event) => {
+        const chat = document.getElementById("chat");
+        const li = document.createElement("li");
+        console.log("Event:", event);
+        li.textContent = event.data;
+        chat.appendChild(li);
+      });
+
+      function sendMessage() {
+        const messageInput = document.getElementById("message");
+        const message = messageInput.value;
+        socket.send(message);
+        messageInput.value = "";
+      }
+    </script>
+  </body>
+</html>
