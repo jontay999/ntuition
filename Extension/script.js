@@ -18,6 +18,8 @@ function reduceDuration() {
 reduceDurationButton.addEventListener("click", reduceDuration);
 increaseDurationButton.addEventListener("click", increaseDuration);
 
+// index2.html script
+
 document.getElementById('copy').addEventListener('click', function() {
     
     // Select the text field
@@ -33,4 +35,9 @@ document.getElementById('copy').addEventListener('click', function() {
     });
 });
 
+// index3.html script
+document.getElementById('codeInput').addEventListener('input', function(e) {
+    // Allow only digits by replacing non-digit characters
+    this.value = this.value.replace(/\D/g, '');
+});
 
