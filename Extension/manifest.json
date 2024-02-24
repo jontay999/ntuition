@@ -1,15 +1,17 @@
 {
-  "manifest_version": 2,
-  "name": "P2P Browser Monitoring",
-  "description": "Get you friends to help monitor your internet usage",
-  "short_name": "p2p browser monitoring",
-  "version": "1.0",
-  "browser_action": {
-    "default_popup": "index.html"
-  },
-  "background": {
-    "scripts": ["background.js"]
-  },
-  "permissions": ["tabs"],
-  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+    "manifest_version": 3,
+    "name": "P2P Browser Monitoring",
+    "description": "Get your friends to help monitor your internet usage",
+    "version": "1.0",
+    "action": {
+        "default_popup": "index.html"
+    },
+    "background": {
+        "service_worker": "background.js"
+    },
+    "permissions": ["tabs"],
+    "host_permissions": ["<all_urls>"],
+    "content_security_policy": {
+        "extension_pages": "script-src 'self'; object-src 'self'"
+    }
 }
