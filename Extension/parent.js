@@ -16,7 +16,7 @@ socket_parent.on("parent_begin_monitoring", (child_id) => {
 // kenna complain
 
 socket_parent.on("parent_kenna_complain", (site) => {
-  alert(`WALAO MY CHILD VISIT: ${site}!!!!`);
+  alert(`OH NO!!!! The user visited : ${site}!!!!`);
 });
 
 const call_police_on_child = (scolding) => {
@@ -24,3 +24,7 @@ const call_police_on_child = (scolding) => {
 
   socket_parent.emit("parent_call_police", scolding);
 };
+
+document
+  .getElementById("start-tracking-button")
+  .addEventListener("click", () => send_accept_code(123456));

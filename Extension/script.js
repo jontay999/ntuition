@@ -117,6 +117,7 @@ function generateCode() {
   //generate a random 6 digit number
   const randomCode = Math.floor(100000 + Math.random() * 900000);
   document.getElementById("code").textContent = randomCode;
+  console.log("code generated");
 }
 
 function trackAnother() {
