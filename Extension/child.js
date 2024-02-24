@@ -9,6 +9,7 @@ const socket_child = io(SERVER);
 // I tell server to generate 6 digit code for me
 const send_monitor_request = () => {
     socket_child.emit("child_monitor_request");
+    console.log("sent monitor request");
 };
 
 // Server sends me back code to share with parent

@@ -114,6 +114,8 @@ function generateCode() {
   //generate a random 6 digit number
   const randomCode = Math.floor(100000 + Math.random() * 900000);
   document.getElementById("code").textContent = randomCode;
+  console.log("start timer")
+  send_monitor_request();
 }
 
 function trackAnother() {
@@ -166,3 +168,76 @@ if (minDuration <= 0) {
 }
 
 document.getElementById("timer-duration").innerHTML = minDuration;
+
+// // Child functions
+
+// const socket_child = io('http://localhost:3000');
+// console.log("child connect")
+
+// // I tell server to generate 6 digit code for me
+// const send_monitor_request = () => {
+//     socket_child.emit("child_monitor_request");
+//     console.log("sent monitor request");
+// };
+
+// // Server sends me back code to share with parent
+// socket_child.on("child_code", (data) => {
+//     console.log("received code:", data);
+// });
+
+// // show child that server is waiting for you to confirm
+// socket_child.on("child_complete_handshake", (parent_id) => {
+//     console.log(
+//         "parent accepted request, i am being monitored by ",
+//         parent_id
+//     );
+//     document.getElementById("resp1").innerHTML = parent_id;
+// });
+
+// // tell server i okay with the panopticon
+// const send_confirmation = () => {
+//     const parent_id = document.getElementById("resp1").innerHTML;
+//     console.log("confirming ", parent_id, "as my parent");
+//     socket_child.emit("child_confirm_handshake", parent_id);
+// };
+
+// // tell server that i am bad boy
+// const send_i_am_bad_boy = () => {
+//     console.log("tell server i am bad boy");
+//     const bad_site = "https://tiktok.com/youtube.com/instagram.com";
+//     socket_child.emit("child_is_bad_boy", bad_site);
+// };
+
+// // kenna scolded alreday
+// socket_child.on("child_kenna_scolded", (scolding) => {
+//     alert("kenna scolded already haiyo:" + scolding);
+// });
+
+// // Parent functions
+
+// const socket_parent = io("http://localhost:3000");
+
+// // tell server that i would love to stalk this person
+// const send_accept_code = (code) => {
+//   console.log("parent accepting request with code:", code);
+
+//   socket_parent.emit("parent_accept_request", code);
+// };
+
+// // tell parent that big brother can start watching little brother
+
+// socket_parent.on("parent_begin_monitoring", (child_id) => {
+//   console.log("can begin monitoring my dear child:", child_id);
+// });
+
+// // kenna complain
+
+// socket_parent.on("parent_kenna_complain", (site) => {
+//   alert(`WALAO MY CHILD VISIT: ${site}!!!!`);
+// });
+
+// const call_police_on_child = (scolding) => {
+//   console.log("need to scold child liao!");
+
+//   socket_parent.emit("parent_call_police", scolding);
+// };
