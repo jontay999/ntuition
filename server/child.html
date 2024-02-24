@@ -6,8 +6,24 @@
   </head>
   <body>
     <div>I am a child</div>
-    <button onclick="monitor_request()">Create connection request</button>
-    <button onclick="monitor_request()">Create connection request</button>
+    <div>
+      Step 1: I tell server i want to be monitored
+      <button onclick="send_monitor_request()">
+        Create connection request
+      </button>
+    </div>
+    <hr />
+    <div>
+      Step 3: Child confirm monitoring
+      <div id="resp1"></div>
+      <button onclick="send_confirmation()">Accept handshake</button>
+    </div>
+    <hr />
+    <div>
+      Step 4: I become very naughty and visit blacklisted_sites
+      <button onclick="send_i_am_bad_boy()">Bad Boy Button</button>
+    </div>
+
     <!-- <script src="/socket.io/socket.io.js"></script> -->
     <script
       src="https://cdn.socket.io/4.7.4/socket.io.min.js"
@@ -15,19 +31,51 @@
       crossorigin="anonymous"
     ></script>
     <script>
-      const socket = io("http://localhost:3000");
+      const SERVER = "http://localhost:3000";
+      const MONITOR_DETAILS = {
+        blacklisted_sites: ["instagram.com", "youtube.com", "tiktok.com"],
+        duration: 30,
+      };
 
-      socket.on("chat message", (msg, serverOffset) => {
-        console.log("chat message");
-      });
+      const socket = io(SERVER);
 
-      socket.on("code", (data) => {
+      // I tell server to generate 6 digit code for me
+      const send_monitor_request = () => {
+        socket.emit("child_monitor_request");
+      };
+
+      // Server sends me back code to share with parent
+      socket.on("child_code", (data) => {
         console.log("received code:", data);
       });
 
-      const monitor_request = () => {
-        socket.emit("monitor_request", "hi");
+      // show child that server is waiting for you to confirm
+      socket.on("child_complete_handshake", (parent_id) => {
+        console.log(
+          "parent accepted request, i am being monitored by ",
+          parent_id
+        );
+        document.getElementById("resp1").innerHTML = parent_id;
+      });
+
+      // tell server i okay with the panopticon
+      const send_confirmation = () => {
+        const parent_id = document.getElementById("resp1").innerHTML;
+        console.log("confirming ", parent_id, "as my parent");
+        socket.emit("child_confirm_handshake", parent_id);
       };
+
+      // tell server that i am bad boy
+      const send_i_am_bad_boy = () => {
+        console.log("tell server i am bad boy");
+        const bad_site = "https://tiktok.com/youtube.com/instagram.com";
+        socket.emit("child_is_bad_boy", bad_site);
+      };
+
+      // kenna scolded alreday
+      socket.on("child_kenna_scolded", (scolding) => {
+        alert("kenna scolded already haiyo:" + scolding);
+      });
     </script>
   </body>
 </html>

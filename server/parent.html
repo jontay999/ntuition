@@ -6,6 +6,19 @@
   </head>
   <body>
     <div>I am a parent</div>
+    <hr />
+    <div>
+      Step 2: I take the code that child gave me and confirm
+      <button onclick="send_accept_code(123456)">Accept Code</button>
+      <div>
+        <code> 123456 </code>
+      </div>
+    </div>
+    <hr />
+    <div>
+        Step 5: I need to scold my child
+        <button onclick="call_police_on_child('you stupid ah?!')"">Scold Child</button>
+      </div>
     <script
       src="https://cdn.socket.io/4.7.4/socket.io.min.js"
       integrity="sha384-Gr6Lu2Ajx28mzwyVR8CFkULdCU7kMlZ9UthllibdOSo6qAiN+yXNHqtgdTvFXMT4"
@@ -14,9 +27,26 @@
     <script>
       const socket = io("http://localhost:3000");
 
-      socket.on("chat message", (msg, serverOffset) => {
-        console.log("chat message");
+      // tell server that i would love to stalk this person
+      const send_accept_code = (code) => {
+        console.log("parent accepting request with code:", code);
+        socket.emit("parent_accept_request", code);
+      };
+
+      // tell parent that big brother can start watching little brother
+      socket.on("parent_begin_monitoring", (child_id) => {
+        console.log("can begin monitoring my dear child:", child_id);
       });
+
+      // kenna complain
+      socket.on("parent_kenna_complain", (site) => {
+        alert(`WALAO MY CHILD VISIT: ${site}!!!!`);
+      });
+
+      const call_police_on_child = (scolding) => {
+        console.log("need to scold child liao!");
+        socket.emit("parent_call_police", scolding);
+      };
     </script>
   </body>
 </html>
