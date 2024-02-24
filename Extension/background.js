@@ -28,11 +28,15 @@ const urls = [
       host = host.replace('www.', '').replace('.com', '');
       if (urls.some(each => each.includes(host))) {
         // set the site and current time
+        let fullDate = new Date()
         active = {
-        name: host,
-        time: Date.now()
+            name: host,
+            date: fullDate.getDate() + '-' + fullDate.toLocaleString('default', { month: 'short' }) + '-' + fullDate.getFullYear(),
+            time: String(fullDate.getHours()).padStart(2, '0') + ':' + String(fullDate.getMinutes()).padStart(2, '0') + ':' + String(fullDate.getSeconds()).padStart(2, '0'),
+            full_date: fullDate
+            
         };
-        console.log(`${active.name} visited at ${active.time}`);
+        console.log(`${active.name} visited at ${active.time}, ${active.date}`);
       }
     }
   }
