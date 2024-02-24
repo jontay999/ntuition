@@ -8,9 +8,9 @@
       rel="stylesheet"
     />
   </head>
-  <body class="text-lg">
+  <body class="text-lg bg-gray-100">
     <div
-      id="start-session"
+      id="start-session-section"
       class="p-4 flex flex-col gap-2 bg-gray-100"
       style="width: 450px"
     >
@@ -67,11 +67,14 @@
         </div>
       </div>
       <div class="w-full flex justify-center items-center">
-        <button class="bg-red-500 w-fit rounded-md text-white p-2">
+        <button
+          class="bg-red-500 w-fit rounded-md text-white p-2"
+          id="generate-code-button"
+        >
           Generate Code
         </button>
       </div>
-      <div class="flex justify-center items-center text-gray-600 text-md">
+      <div class="flex justify-center items-center text-gray-600 text-md mt-1">
         Got a code?
         <u class="ml-1 cursor-pointer" id="track-another">track another</u>
       </div>
