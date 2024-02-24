@@ -8,14 +8,14 @@
       rel="stylesheet"
     />
   </head>
-  <body>
+  <body class="text-lg">
     <div
       id="start-session"
       class="p-4 flex flex-col gap-2 bg-gray-100"
       style="width: 450px"
     >
       <h2 class="font-bold text-3xl mb-4">trackmepls.</h2>
-      <div class="flex items-center gap-4">
+      <div class="flex items-center gap-4 mb-4">
         <div>Duration:</div>
         <button
           id="reduce-duration"
@@ -31,23 +31,39 @@
           +5
         </button>
       </div>
-      <div class="flex flex-col">
+      <div
+        class="flex flex-col mb-4 border border-gray-500 p-4"
+        id="blacklist-section"
+      >
         <div class="mb-2">Blacklist:</div>
-        <div class="flex items-center gap-3 ml-4">
+        <div class="flex items-center gap-3 ml-4 my-1">
           <input type="checkbox" id="youtube" name="youtube" />
           <label for="scales">www.youtube.com</label>
         </div>
-        <div class="flex items-center gap-3 ml-4">
+        <div class="flex items-center gap-3 ml-4 my-1">
           <input type="checkbox" id="facebook" name="facebook" />
           <label for="scales">www.facebook.com</label>
         </div>
-        <div class="flex items-center gap-3 ml-4">
+        <div class="flex items-center gap-3 ml-4 my-1">
           <input type="checkbox" id="reddit" name="reddit" />
           <label for="scales">www.reddit.com</label>
         </div>
-        <div class="flex items-center gap-3 ml-4">
+        <div class="flex items-center gap-3 ml-4 my-1">
           <input type="checkbox" id="instagram" name="instagram" />
           <label for="scales">www.instagram.com</label>
+        </div>
+        <div id="add-website" class="flex items-center gap-3 ml-4 my-3">
+          <input
+            type="text"
+            id="newWebsite"
+            placeholder="Enter any other website"
+            class="p-2 w-full"
+          />
+          <button id="add-new-website-button">
+            <img
+              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAABHklEQVR4nO2WTU6EQBCFv0u4GGWM55DxACYj8RoqMmdxSdSNy9n7cxMwnkJwJwRDUiaEhKa6sQ0LXvI2pNNf6lFd3bBohjoGboE3IAe+xLl8i4H1XwKPgBSogGbENbAHTqZCL4FSAey7ACJX6E4qsIV2q09cKq0nQLtwdeWBY7ym2A814EflhqfARrn2XnNkNN3b+leatZUkOajEIkIbcAPcmMCvHsHPJvCHR3BuAheGRtJqqOEKF3BoAT5zAb97jDqbZXPFHsFXJvDa0wD5HhsgrR6Um4WGRuo7RXnxD3W3iz+BFUqdW0Q+di1eaKHduT31IdC+0ZwUOcbexrtlog6AO+lMTZVPNv9Uo0CutheZQqU4k+FwrTkyi/hv/QAGMJYNzRi9AwAAAABJRU5ErkJggg=="
+            />
+          </button>
         </div>
       </div>
       <div class="w-full flex justify-center items-center">
@@ -55,7 +71,7 @@
           Generate Code
         </button>
       </div>
-      <div class="flex justify-center items-center text-gray-600">
+      <div class="flex justify-center items-center text-gray-600 text-md">
         Got a code?
         <u class="ml-1 cursor-pointer" id="track-another">track another</u>
       </div>
