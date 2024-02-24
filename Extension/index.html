@@ -1,30 +1,39 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Covid-19 Stats- UK</title>
+    <title>trackmepls.</title>
     <meta charset="utf-8" />
+    <link
+      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <div class="container mt-3" style="width: 450px">
-      <h2 class="text-center">Covid Latest Report-UK</h2>
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Country</th>
-            <th>Confirmed</th>
-            <th>Deaths</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td id="date"></td>
-            <td id="areaName"></td>
-            <td id="latestBy"></td>
-            <td id="deathNew"></td>
-          </tr>
-        </tbody>
-      </table>
+    <div
+      id="start-session"
+      class="mt-3 p-4 flex flex-col gap-2"
+      style="width: 450px"
+    >
+      <h2 class="font-bold text-3xl mb-4">trackmepls.</h2>
+      <div class="flex items-center gap-4">
+        <div>Duration:</div>
+        <button
+          id="reduce-duration"
+          class="rounded-full h-8 w-8 border border-gray-500 text-sm p-1"
+        >
+          -5
+        </button>
+        <div class="text-lg" id="duration">30 min</div>
+        <button
+          id="increase-duration"
+          class="rounded-full h-8 w-8 border border-gray-500 text-sm p-1"
+        >
+          +5
+        </button>
+      </div>
+      <div>
+        <div>Blacklist:</div>
+      </div>
     </div>
   </body>
   <script src="script.js"></script>
