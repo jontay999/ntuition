@@ -2,6 +2,7 @@ let startSessionSection = document.getElementById("start-session-section");
 let codeSection = document.getElementById("code-section");
 let trackAnotherSection = document.getElementById("track-another-section");
 let trackingSection = document.getElementById("tracking-section");
+let timerSection = document.getElementById("timer-section");
 
 let durationDisplay = document.getElementById("duration");
 let reduceDurationButton = document.getElementById("reduce-duration");
@@ -12,6 +13,8 @@ let blacklistSection = document.getElementById("blacklist-section");
 let addNewWebsiteButton = document.getElementById("add-new-website-button");
 let generateCodeButton = document.getElementById("generate-code-button");
 let startTrackingButton = document.getElementById("start-tracking-button");
+let startSessionButton = document.getElementById("start-session-button");
+let newSessionButton = document.getElementById("new-button");
 
 function increaseDuration() {
   durationDisplay.textContent =
@@ -29,42 +32,42 @@ reduceDurationButton.addEventListener("click", reduceDuration);
 increaseDurationButton.addEventListener("click", increaseDuration);
 
 function addWebsite() {
-    // Get the input value
-    var newWebsiteInput = document.getElementById("newWebsite");
-    var newWebsite = newWebsiteInput.value.trim();
-  
-    // Check if the input is not empty
-    if (newWebsite !== "") {
-      // Create a new checkbox and label
-      var newCheckbox = document.createElement("input");
-      newCheckbox.type = "checkbox";
-      newCheckbox.id = newWebsite.toLowerCase();
-      newCheckbox.name = newWebsite.toLowerCase();
-      newCheckbox.checked = true;
-  
-      var newLabel = document.createElement("label");
-      newLabel.htmlFor = newWebsite.toLowerCase();
-      newLabel.textContent = newWebsite;
-  
-      // Create a new div for the entry
-      var newEntry = document.createElement("div");
-      newEntry.className = "flex items-center gap-3 ml-4 my-1";
-      newEntry.appendChild(newCheckbox);
-      newEntry.appendChild(newLabel);
-  
-      // Append the new entry to the blacklist section
-      var blacklistSection = document.getElementById("blacklist-section");
-      blacklistSection.insertBefore(
-        newEntry,
-        document.getElementById("add-website")
-      );
-  
-      // Clear the input field
-      newWebsiteInput.value = "";
-    }
+  // Get the input value
+  var newWebsiteInput = document.getElementById("newWebsite");
+  var newWebsite = newWebsiteInput.value.trim();
+
+  // Check if the input is not empty
+  if (newWebsite !== "") {
+    // Create a new checkbox and label
+    var newCheckbox = document.createElement("input");
+    newCheckbox.type = "checkbox";
+    newCheckbox.id = newWebsite.toLowerCase();
+    newCheckbox.name = newWebsite.toLowerCase();
+    newCheckbox.checked = true;
+
+    var newLabel = document.createElement("label");
+    newLabel.htmlFor = newWebsite.toLowerCase();
+    newLabel.textContent = newWebsite;
+
+    // Create a new div for the entry
+    var newEntry = document.createElement("div");
+    newEntry.className = "flex items-center gap-3 ml-4 my-1";
+    newEntry.appendChild(newCheckbox);
+    newEntry.appendChild(newLabel);
+
+    // Append the new entry to the blacklist section
+    var blacklistSection = document.getElementById("blacklist-section");
+    blacklistSection.insertBefore(
+      newEntry,
+      document.getElementById("add-website")
+    );
+
+    // Clear the input field
+    newWebsiteInput.value = "";
   }
-  
-  addNewWebsiteButton.addEventListener("click", addWebsite);
+}
+
+addNewWebsiteButton.addEventListener("click", addWebsite);
 
 // index2.html script
 
@@ -90,38 +93,6 @@ document.getElementById("codeInput").addEventListener("input", function (e) {
   // Allow only digits by replacing non-digit characters
   this.value = this.value.replace(/\D/g, "");
 });
-
-
-  // Check if the input is not empty
-  if (newWebsite !== "") {
-    // Create a new checkbox and label
-    var newCheckbox = document.createElement("input");
-    newCheckbox.type = "checkbox";
-    newCheckbox.id = newWebsite.toLowerCase();
-    newCheckbox.name = newWebsite.toLowerCase();
-    newCheckbox.checked = true;
-
-    var newLabel = document.createElement("label");
-    newLabel.htmlFor = newWebsite.toLowerCase();
-    newLabel.textContent = newWebsite;
-
-    // Create a new div for the entry
-    var newEntry = document.createElement("div");
-    newEntry.className = "flex items-center gap-3 ml-4 my-1";
-    newEntry.appendChild(newCheckbox);
-    newEntry.appendChild(newLabel);
-
-    // Append the new entry to the blacklist section
-    let blacklistSection = document.getElementById("blacklist-section");
-    blacklistSection.insertBefore(
-      newEntry,
-      document.getElementById("add-website")
-    );
-
-    // Clear the input field
-    newWebsiteInput.value = "";
-  }
-
 
 function generateCode() {
   var blacklistSites = [];
@@ -155,9 +126,43 @@ function startTracking() {
   //set display none for start section
   trackingSection.style.display = "block";
   trackAnotherSection.style.display = "none";
+  console.log("start tracking");
+}
+
+function startTimer() {
+  //set display none for start section
+  timerSection.style.display = "block";
+  codeSection.style.display = "none";
+}
+
+function newSession() {
+  timerSection.style.display = "none";
+  startSessionSection.style.display = "block";
 }
 
 trackAnotherButton.addEventListener("click", trackAnother);
 generateCodeButton.addEventListener("click", generateCode);
 addNewWebsiteButton.addEventListener("click", addWebsite);
 startTrackingButton.addEventListener("click", startTracking);
+startSessionButton.addEventListener("click", startTimer);
+newSessionButton.addEventListener("click", newSession);
+
+var endTime = 1708789039;
+var nowTime = Math.floor(Date.now() / 1000);
+
+console.log(endTime);
+console.log(nowTime);
+
+var duration = endTime - nowTime;
+var minDuration = Math.max(Math.floor(duration / 60), 0);
+
+console.log(minDuration);
+
+if (minDuration <= 0) {
+  document.getElementById("tracking-message").classList.add("hidden");
+  document.getElementById("over-message").classList.remove("hidden");
+  document.getElementById("end-button").classList.add("hidden");
+  document.getElementById("new-button").classList.remove("hidden");
+}
+
+document.getElementById("timer-duration").innerHTML = minDuration;
