@@ -29,7 +29,7 @@ const child_to_parent_connections = {};
 // parent: child
 const parent_to_child_connections = {};
 const random_code = () => {
-  return "123456";
+  return "712382";
   while (true) {
     const num = Math.floor(100000 + Math.random() * 900000).toString();
     if (!(num in codes)) {

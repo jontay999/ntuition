@@ -31,9 +31,9 @@ const send_confirmation = () => {
 };
 
 // tell server that i am bad boy
-const send_i_am_bad_boy = () => {
+const send_i_am_bad_boy = (site) => {
   console.log("tell server i am bad boy");
-  const bad_site = "https://tiktok.com/youtube.com/instagram.com";
+  const bad_site = site;
   socket_child.emit("child_is_bad_boy", bad_site);
 };
 
@@ -64,7 +64,7 @@ const getActiveTab = () => {
     chrome.tabs.query(
       {
         active: true,
-        currentWindow: true,
+        // currentWindow: true,
       },
       (activeTab) => {
         resolve(activeTab[0]);
@@ -88,7 +88,7 @@ const setActive = async () => {
         date: Date.now(),
       };
       console.log(`${active.name} visited at ${active.date}`);
-      send_i_am_bad_boy();
+      send_i_am_bad_boy(active.name);
     }
   }
 };
